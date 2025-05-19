@@ -1,0 +1,245 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ISCC-总决赛-WP | Snow's Blog</title><meta name="author" content="Snow"><meta name="copyright" content="Snow"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="WEB谁动了我的奶酪输入tom得到一段Php源码，通过clue构建payload得到提示flag_of_cheese 再根据提示构建下一个payload  得到这样一串东西，base64解密发现半段flag  输入tom的Php文件名base64后是oneCheese，猜测twoCheese并用base64编码后得到一个新的php 输入后发现不行，需要权限，在F12注释栏内有提示  提示的是一串解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ISCC-总决赛-WP">
+<meta property="og:url" content="https://snow233.github.io/2025/05/19/ISCC-%E6%80%BB%E5%86%B3%E8%B5%9B-WP/index.html">
+<meta property="og:site_name" content="Snow&#39;s Blog">
+<meta property="og:description" content="WEB谁动了我的奶酪输入tom得到一段Php源码，通过clue构建payload得到提示flag_of_cheese 再根据提示构建下一个payload  得到这样一串东西，base64解密发现半段flag  输入tom的Php文件名base64后是oneCheese，猜测twoCheese并用base64编码后得到一个新的php 输入后发现不行，需要权限，在F12注释栏内有提示  提示的是一串解">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://snow233.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2025-05-19T03:13:00.000Z">
+<meta property="article:modified_time" content="2025-05-19T03:13:26.821Z">
+<meta property="article:author" content="Snow">
+<meta property="article:tag" content="blog,snow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://snow233.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ISCC-总决赛-WP",
+  "url": "https://snow233.github.io/2025/05/19/ISCC-%E6%80%BB%E5%86%B3%E8%B5%9B-WP/",
+  "image": "https://snow233.github.io/img/avatar.jpg",
+  "datePublished": "2025-05-19T03:13:00.000Z",
+  "dateModified": "2025-05-19T03:13:26.821Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Snow",
+      "url": "https://snow233.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snow233.github.io/2025/05/19/ISCC-%E6%80%BB%E5%86%B3%E8%B5%9B-WP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ISCC-总决赛-WP',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/index_image.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> Links</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/index_image.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Snow's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">ISCC-总决赛-WP</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> Links</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">ISCC-总决赛-WP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-05-19T03:13:00.000Z" title="Created 2025-05-19 11:13:00">2025-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-05-19T03:13:26.821Z" title="Updated 2025-05-19 11:13:26">2025-05-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="谁动了我的奶酪"><a href="#谁动了我的奶酪" class="headerlink" title="谁动了我的奶酪"></a>谁动了我的奶酪</h2><p>输入tom得到一段Php源码，通过clue构建payload得到提示flag_of_cheese</p>
+<p>再根据提示构建下一个payload</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=MTQwYTg1YWZmNWJmMWU5OGU5MTUyNTNiNTUzMjEwMjdfd3M3QWFiYUtOMjAwaTdTd3IyZjAxeVdrbUpUWmJqaWpfVG9rZW46VWdNN2JWQmJUb21iclV4RmZCZmNTTkFzbkFnXzE3NDc2MjQzOTk6MTc0NzYyNzk5OV9WNA"></p>
+<p>得到这样一串东西，base64解密发现半段flag</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDkxZjNmZWY4NzM4ZGY3YTUzMGVlNTExNjcwZTZhMjZfZ0RpTXZtcDNBUlFQRWQ3M1FLdENKeXpzMG4zSXBqRWdfVG9rZW46UHVnYmJKeDVWb1oxWGN4NkZEamNFSE1zbnVmXzE3NDc2MjQzOTk6MTc0NzYyNzk5OV9WNA"></p>
+<p>输入tom的Php文件名base64后是oneCheese，猜测twoCheese并用base64编码后得到一个新的php</p>
+<p>输入后发现不行，需要权限，在F12注释栏内有提示</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=YWQ3NzY3OGRkZTdhMzYyYjg5MGFkOTJkNTI3NmVmNzlfNDBNeUpUYXM3RFh1MWZLQkg5dkpXelE2Z0JmdGhtdVVfVG9rZW46RU9DSGJyaWRlb0FLOUV4c1hSSWNKd01yblNjXzE3NDc2MjQzOTk6MTc0NzYyNzk5OV9WNA"></p>
+<p>提示的是一串解码后为Jerry_Loves_Cheese的字符</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=NThlYzcwZjUwOWU4MzNiNWM2NmJmYzdhM2ZiNzRjMDdfb2RMTDByZ2lKMjB4emtQRUV0VnZ6VFRPVG51OHNkZExfVG9rZW46WkF2WmJaV3Zyb1dJZnh4czFSQmNQazM3bnJkXzE3NDc2MjQzOTk6MTc0NzYyNzk5OV9WNA"></p>
+<p>抓了一下包发现用了jwt,于是上官网修改了cookie和token再次进入发现有这样一串代码</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=YjNkYjBiNzI3NjkwNWFiZGQxNzg4NDNiNTZmNzc5MTJfc3lLWU1FR2pXRlY3eXpjanVqQzhiV0ZtMGk2b1BvQTdfVG9rZW46VjR3b2JieU4yb2FTeGV4ZDJSSWNvU2p5blViXzE3NDc2MjQzOTk6MTc0NzYyNzk5OV9WNA"></p>
+<p>将其xor 0x16后得到后半段</p>
+<p>ISCC{ch33se_th!ef_!5_the_0n3_beh!no1_the_w@11s}</p>
+<h1 id="Mobile"><a href="#Mobile" class="headerlink" title="Mobile"></a>Mobile</h1><h2 id="GGAD"><a href="#GGAD" class="headerlink" title="GGAD"></a>GGAD</h2><p>在jadx里分析一下代码就能得知加密逻辑是一个维吉尼亚+一个RC4</p>
+<p>分别在ggad.b,ggad.c中提取需要解密的字符</p>
+<p>rc4的key是呼神唤卫ExpectoPatronum</p>
+<p>脚本让ai生成一个就行</p>
+<p>最后跑出来的是长这样的</p>
+<p>ISCC{R3v3!0&amp;N1ffl3r}</p>
+<h2 id="叽米是梦的开场白"><a href="#叽米是梦的开场白" class="headerlink" title="叽米是梦的开场白"></a>叽米是梦的开场白</h2><p>解压apk发现有3个so文件，一个一个看</p>
+<p>在 libmobile04.so 里面找到这样一串东西，一眼dex</p>
+<p>给他存下来</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=MGYwMDEyMGQxYWFkNGJkYzcwMDhlNDc3M2I3NTFkYzBfT1FQbExoTlN1Z2JISlVOb3ZOODQwaGExTzdjdlBoc0hfVG9rZW46WXpIdGJiSVdKb29LTHR4YWo1VmN5UDRxbkVnXzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGU1NTg4YzdjZTc0MzBjMDcyY2EzMWU0NDU3Y2YyZmJfRlBXMURseTJKVlBPcHlmWmJiRXI5bkVIZm40TUliQkhfVG9rZW46SEx1TmJjVmZMb0FhaE14enRGOGNsRzRtbnZmXzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<p>拿到jadx里面打开看看，发现有一串byte要解密</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=YzZjZmFhNzI0NWVhNjRmNjM3MjVhN2I0NDI3MGE1YjRfNnZUQ0tQUnZwcGhPb0NVd3RUNlJFWlFSWlFwRHpuZlZfVG9rZW46Q1dOdGJ5cmdJb1BoYzB4QTdkNWNtVlR2blZjXzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<p>找到密文了，密钥在哪里找呢</p>
+<p>在libsunday.so里的Java_com_example_mobile04_Sunday_getKey可以明显发现一串很像密钥的，拿出来试试看看</p>
+<p>有点像但不确定，先留着</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=NjJiYzhjNTVkYTE5MGNjOTExZjE0ZDc1YTdjM2FmZGFfVEpVZGF2WndJYllpYU13UnlZcE1ZZmhFUThTM1VRVkVfVG9rZW46Uml1aGJHZjFzb0pmRnl4R3Bad2NSQnhwbk90XzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<p>另外一串密文需要在libmonday.so里找</p>
+<p>是一段位移+异或的逻辑</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=NjA3Zjg5NDUzYWM5ODYxZGM1MmIwOGZlYjViNjI0ZjhfZDB5S0dwbTV2SFJzSXZ0b2xSb0doUzdmT3pWeU96MWhfVG9rZW46TjVYNGJZMnVub1licjl4ZnhubWNDU0Fsbm9jXzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<p>难点来了，要在assest里的一个enreal文件里运用到上文的逻辑进行解密</p>
+<p>解密完之后放到ida里可以发现这样的两组数据</p>
+<p>5UDecUJ4MKKJTuK3SVTfClQy</p>
+<p>0xC675772F92E53579</p>
+<p>不用想肯定是另外一组密文和密钥了</p>
+<p>解密得到另外一串字符</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=YzhmMTE4Mjk0NTU1ODkxYmFjNGMwMmVkZDg1NGQzZDhfUjVhZWJJd255UGo4aGIwQms5M25sSDYxQ1dsUWIwaVJfVG9rZW46UjVEcmJISnZBb3lBcU14eDQ3aWM1TGNBbk5mXzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<p>拼接起来就是flag了</p>
+<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="uglyCPP"><a href="#uglyCPP" class="headerlink" title="uglyCPP"></a>uglyCPP</h2><p>狮山代码就丢给ai分析</p>
+<p>主要逻辑</p>
+<ol>
+<li><strong>初始化数据</strong>：<ol>
+<li>创建一个包含9个整数的数组<code>v12</code>，这些是硬编码的特定值</li>
+<li>使用这些值初始化一个vector <code>v11</code></li>
+</ol>
+</li>
+<li><strong>大小比较</strong>：<ol>
+<li>首先比较输入vector <code>a2</code>的大小与内部vector <code>v11</code>的大小</li>
+<li>如果大小不同，直接输出换行并返回</li>
+</ol>
+</li>
+<li><strong>元素比较</strong>：<ol>
+<li>如果大小相同，则逐个比较两个vector中的元素</li>
+<li>使用迭代器遍历两个vector，比较对应位置的元素值</li>
+<li>如果发现任何不匹配的元素，就跳出循环</li>
+</ol>
+</li>
+<li><strong>输出结果</strong>：<ol>
+<li>无论比较是否成功，都会输出一个换行符</li>
+<li>没有明显的成功&#x2F;失败指示，只是输出换行</li>
+</ol>
+</li>
+</ol>
+<p>分析完之后可以理一下整体的逻辑</p>
+<ol>
+<li>反向字符替换</li>
+<li>字符串转十六进制（小端序）</li>
+<li>异或加密（flag_hex ^ key &#x3D; encrypted）</li>
+</ol>
+<p>所以写脚本的逻辑就是让他整体反一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 异或密钥和密文</span></span><br><span class="line">xor_key = [<span class="number">0x3ED6325B</span>, <span class="number">0xD709BF17</span>, <span class="number">0xE3F27E18</span>, <span class="number">0xA0870791</span>, <span class="number">0x146D6F9</span>, <span class="number">0x7C6140FF</span>, <span class="number">0x10B69406</span>, <span class="number">0x94DDE0F6</span>, <span class="number">0x40B2BB6C</span>]</span><br><span class="line">xor_encrypted = [<span class="number">0x0B8E4215</span>, <span class="number">0x9459F879</span>, <span class="number">0x0D3BA0765</span>, <span class="number">0x92C948C2</span>, <span class="number">0x503CB982</span>, <span class="number">0x241922B6</span>, <span class="number">0x62C6E731</span>, <span class="number">0x0FB90B5B5</span>, <span class="number">0x2284F118</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 异或解密</span></span><br><span class="line">xor_result = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(xor_key)):</span><br><span class="line">    xor_result.append(<span class="built_in">hex</span>(xor_key[i] ^ xor_encrypted[i]))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;XOR Result (hex):&quot;</span>, xor_result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 十六进制转字符串（小端序处理）</span></span><br><span class="line">decoded_flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> hex_str <span class="keyword">in</span> xor_result:</span><br><span class="line">    hex_str = hex_str[<span class="number">2</span>:]  <span class="comment"># 移除 &#x27;0x&#x27;</span></span><br><span class="line">    <span class="comment"># 补齐前导零，确保 8 个字符（4 字节）</span></span><br><span class="line">    hex_str = hex_str.zfill(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># 每 2 个字符一组转换为字节，并反转</span></span><br><span class="line">    chunk = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(hex_str), <span class="number">2</span>):</span><br><span class="line">        byte = <span class="built_in">int</span>(hex_str[i:i+<span class="number">2</span>], <span class="number">16</span>)</span><br><span class="line">        chunk += <span class="built_in">chr</span>(byte)</span><br><span class="line">    decoded_flag += chunk[::-<span class="number">1</span>]  <span class="comment"># 反转 4 字节块</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Decoded Flag (after XOR and LE conversion):&quot;</span>, decoded_flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 字符替换（类似于凯撒密码或置换密码）</span></span><br><span class="line"><span class="comment"># 定义字符映射表</span></span><br><span class="line">original_chars = <span class="string">&quot;1234567890abcdefghijklmnopqrstuvwxyz&quot;</span></span><br><span class="line">mapped_chars = <span class="string">&quot;vfw8xgy4zh9i2j0k5lam1nbo6pcq3rds7teu&quot;</span></span><br><span class="line"></span><br><span class="line">final_flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> original_chars:</span><br><span class="line">    index = mapped_chars.index(c)  <span class="comment"># 找到 original_chars 中的字符在 mapped_chars 的位置</span></span><br><span class="line">    final_flag += decoded_flag[index]  <span class="comment"># 用该位置从 decoded_flag 取字符</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Final Flag:&quot;</span>, final_flag)</span><br></pre></td></tr></table></figure>
+
+<p>ISCC{7t5HNzxpM6pGy0O2oQbXsrUoJbNXnP}</p>
+<h2 id="CrackMe"><a href="#CrackMe" class="headerlink" title="CrackMe"></a>CrackMe</h2><p>借助AI分析各个无名函数得到主要加密逻辑</p>
+<p>是XOR + 凯撒密码 +标准RC4</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=M2VhMzMwNDllNTgzMmFhOTNlZjQwOGQ4NGE3MTFiOWNfRXpaY0NtTVRwR1lTNTQxdFFHT01ocDM3NnRiMGg2dTRfVG9rZW46R2M3WGJGNlFob2JNbGt4WHRPbGNsSHF4bm9iXzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<p>密文在这</p>
+<p><img src="https://fcn3l11pckcl.feishu.cn/space/api/box/stream/download/asynccode/?code=OThjZmM1ZTBmMzgxZTNkNzRhNjRjN2NkMDFiNTNlZmVfZHFMb09Dd1Q1VXJTUEozUDdhOUUzNWZ1SWRRZFNWNVNfVG9rZW46WHdRNWI2TEJJb05BSFV4RjZnRWNvajZFbnZrXzE3NDc2MjQ0MDA6MTc0NzYyODAwMF9WNA"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">rc4</span>(<span class="params">key, data</span>):</span><br><span class="line">    <span class="comment"># Key-scheduling algorithm (KSA)</span></span><br><span class="line">    S = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">256</span>))</span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">        j = (j + S[i] + key[i % <span class="built_in">len</span>(key)]) % <span class="number">256</span></span><br><span class="line">        S[i], S[j] = S[j], S[i]  <span class="comment"># Swap</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Pseudo-random generation algorithm (PRGA)</span></span><br><span class="line">    i = j = <span class="number">0</span></span><br><span class="line">    result = <span class="built_in">bytearray</span>()</span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> data:</span><br><span class="line">        i = (i + <span class="number">1</span>) % <span class="number">256</span></span><br><span class="line">        j = (j + S[i]) % <span class="number">256</span></span><br><span class="line">        S[i], S[j] = S[j], S[i]  <span class="comment"># Swap</span></span><br><span class="line">        t = (S[i] + S[j]) % <span class="number">256</span></span><br><span class="line">        result.append(char ^ S[t])</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># Replace this with your actual ciphertext</span></span><br><span class="line">    flag = <span class="built_in">bytes</span>([</span><br><span class="line">        <span class="number">28</span>, <span class="number">184</span>, <span class="number">46</span>, <span class="number">71</span>, <span class="number">221</span>, <span class="number">114</span>, <span class="number">28</span>, <span class="number">162</span>, <span class="number">222</span>, <span class="number">19</span>,</span><br><span class="line">        <span class="number">71</span>, <span class="number">70</span>, <span class="number">154</span>, <span class="number">240</span>, <span class="number">41</span>, <span class="number">129</span>, <span class="number">212</span>, <span class="number">230</span>, <span class="number">221</span>, <span class="number">238</span>,</span><br><span class="line">        <span class="number">85</span>, <span class="number">154</span>, <span class="number">17</span>, <span class="number">40</span>, <span class="number">23</span>, <span class="number">107</span>, <span class="number">175</span>, <span class="number">232</span>, <span class="number">215</span>, <span class="number">36</span>,</span><br><span class="line">        <span class="number">247</span>, <span class="number">63</span>, <span class="number">233</span>, <span class="number">21</span>, <span class="number">121</span>, <span class="number">23</span>, <span class="number">244</span>, <span class="number">145</span>, <span class="number">156</span>, <span class="number">254</span>,</span><br><span class="line">        <span class="number">53</span>, <span class="number">116</span></span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line">    key = <span class="string">b&quot;SecretKey&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Step 1: RC4 decryption</span></span><br><span class="line">    decrypted = rc4(key, flag)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Step 2: Caesar shift (ROT-3)</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(decrypted)):</span><br><span class="line">        char = decrypted[i]</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>) &lt;= char &lt;= <span class="built_in">ord</span>(<span class="string">&#x27;z&#x27;</span>):</span><br><span class="line">            decrypted[i] = (char - <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>) + <span class="number">26</span> - <span class="number">3</span>) % <span class="number">26</span> + <span class="built_in">ord</span>(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>) &lt;= char &lt;= <span class="built_in">ord</span>(<span class="string">&#x27;Z&#x27;</span>):</span><br><span class="line">            decrypted[i] = (char - <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>) + <span class="number">26</span> - <span class="number">3</span>) % <span class="number">26</span> + <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Step 3: XOR every other character with 65 and print</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(decrypted), <span class="number">2</span>):</span><br><span class="line">        result.append(<span class="built_in">chr</span>(decrypted[i] ^ <span class="number">65</span>))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(result))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://Snow233.github.io">Snow</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://snow233.github.io/2025/05/19/ISCC-%E6%80%BB%E5%86%B3%E8%B5%9B-WP/">https://snow233.github.io/2025/05/19/ISCC-%E6%80%BB%E5%86%B3%E8%B5%9B-WP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Snow</div><div class="author-info-description">Welcome to my blog ! ! ovo</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/snow233"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Snow233" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:870171072@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WEB"><span class="toc-number">1.</span> <span class="toc-text">WEB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%81%E5%8A%A8%E4%BA%86%E6%88%91%E7%9A%84%E5%A5%B6%E9%85%AA"><span class="toc-number">1.1.</span> <span class="toc-text">谁动了我的奶酪</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mobile"><span class="toc-number">2.</span> <span class="toc-text">Mobile</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#GGAD"><span class="toc-number">2.1.</span> <span class="toc-text">GGAD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%BD%E7%B1%B3%E6%98%AF%E6%A2%A6%E7%9A%84%E5%BC%80%E5%9C%BA%E7%99%BD"><span class="toc-number">2.2.</span> <span class="toc-text">叽米是梦的开场白</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">3.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#uglyCPP"><span class="toc-number">3.1.</span> <span class="toc-text">uglyCPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CrackMe"><span class="toc-number">3.2.</span> <span class="toc-text">CrackMe</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/19/ISCC-%E6%80%BB%E5%86%B3%E8%B5%9B-WP/" title="ISCC-总决赛-WP">ISCC-总决赛-WP</a><time datetime="2025-05-19T03:13:00.000Z" title="Created 2025-05-19 11:13:00">2025-05-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/14/AES/" title="AES">AES</a><time datetime="2025-05-14T00:43:14.000Z" title="Created 2025-05-14 08:43:14">2025-05-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/13/ISCC-%E5%8C%BA%E5%9F%9F%E8%B5%9B-WP/" title="ISCC-区域赛-WP">ISCC-区域赛-WP</a><time datetime="2025-05-13T08:15:15.000Z" title="Created 2025-05-13 16:15:15">2025-05-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/05/06/ISCC-School-WP/" title="ISCC-School-WP">ISCC-School-WP</a><time datetime="2025-05-06T06:22:09.000Z" title="Created 2025-05-06 14:22:09">2025-05-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/28/%E6%8E%A7%E5%88%B6%E6%B5%81%E5%B9%B3%E5%9D%A6%E5%8C%96/" title="控制流平坦化">控制流平坦化</a><time datetime="2025-03-28T03:47:17.000Z" title="Created 2025-03-28 11:47:17">2025-03-28</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/index_image.png);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Snow</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
