@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Android八股 | Snow's Blog</title><meta name="author" content="Snow"><meta name="copyright" content="Snow"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Android四大组件Android有四大基本组件：Activity、Service服务、BroadcastReceiver广播接收器、Content Provider内容提供者 App如何获取权限在manifest中申请 高版本安卓需要再次手动请求 从哪里读取指纹prop读取 从android.os 抓包路由 http直接拿 https去apk获取sslpining证书  或者frida hoo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android八股">
+<meta property="og:url" content="https://snow233.github.io/2025/12/27/Android%E5%85%AB%E8%82%A1/index.html">
+<meta property="og:site_name" content="Snow&#39;s Blog">
+<meta property="og:description" content="Android四大组件Android有四大基本组件：Activity、Service服务、BroadcastReceiver广播接收器、Content Provider内容提供者 App如何获取权限在manifest中申请 高版本安卓需要再次手动请求 从哪里读取指纹prop读取 从android.os 抓包路由 http直接拿 https去apk获取sslpining证书  或者frida hoo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://snow233.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2025-12-27T11:47:00.000Z">
+<meta property="article:modified_time" content="2026-01-03T10:54:05.632Z">
+<meta property="article:author" content="Snow">
+<meta property="article:tag" content="blog,snow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://snow233.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Android八股",
+  "url": "https://snow233.github.io/2025/12/27/Android%E5%85%AB%E8%82%A1/",
+  "image": "https://snow233.github.io/img/avatar.jpg",
+  "datePublished": "2025-12-27T11:47:00.000Z",
+  "dateModified": "2026-01-03T10:54:05.632Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Snow",
+      "url": "https://snow233.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://snow233.github.io/2025/12/27/Android%E5%85%AB%E8%82%A1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
+          const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
+          
+          if (theme === undefined) {
+            if (mediaQueryLight.matches) activateLightMode()
+            else if (mediaQueryDark.matches) activateDarkMode()
+            else {
+              const hour = new Date().getHours()
+              const isNight = hour <= 8 || hour >= 22
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            mediaQueryDark.addEventListener('change', () => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else {
+            theme === 'light' ? activateLightMode() : activateDarkMode()
+          }
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Android八股',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/loading-bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(/img/index_image.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> Links</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/index_image.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Snow's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Android八股</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> Links</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> link</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Android八股</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-12-27T11:47:00.000Z" title="Created 2025-12-27 19:47:00">2025-12-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-01-03T10:54:05.632Z" title="Updated 2026-01-03 18:54:05">2026-01-03</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h4 id="Android四大组件"><a href="#Android四大组件" class="headerlink" title="Android四大组件"></a>Android四大组件</h4><p>Android有四大基本组件：<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/Activity/7304419?fromModule=lemma_inlink">Activity</a>、<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/Service/20122848?fromModule=lemma_inlink">Service</a>服务、BroadcastReceiver广播接收器、<a href="https://link.zhihu.com/?target=https://baike.baidu.com/item/Content%20Provider/628987?fromModule=lemma_inlink">Content Provider</a>内容提供者</p>
+<h4 id="App如何获取权限"><a href="#App如何获取权限" class="headerlink" title="App如何获取权限"></a>App如何获取权限</h4><p>在manifest中申请</p>
+<p>高版本安卓需要再次手动请求</p>
+<h4 id="从哪里读取指纹"><a href="#从哪里读取指纹" class="headerlink" title="从哪里读取指纹"></a>从哪里读取指纹</h4><p>prop读取 从android.os</p>
+<h4 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h4><p>路由 http直接拿</p>
+<p>https去apk获取sslpining证书  或者frida hook提取证书</p>
+<p>frida抓包ssl_read&#x2F;write获取信息</p>
+<h4 id="证书通信指纹"><a href="#证书通信指纹" class="headerlink" title="证书通信指纹"></a>证书通信指纹</h4><p>防止中间人攻击</p>
+<h4 id="band通信"><a href="#band通信" class="headerlink" title="band通信"></a>band通信</h4><p>手机通信频段  api直接查</p>
+<h4 id="App启动流程"><a href="#App启动流程" class="headerlink" title="App启动流程"></a>App启动流程</h4><p><img src="/images/Android%E5%85%AB%E8%82%A1/image-20251216115454273.png"></p>
+<p>Launcher（桌面）发送启动请求   </p>
+<p> System Server 处理启动 Activity 的请求   </p>
+<p> AMS（ActivityManagerService）决定是否需要创建新进程   </p>
+<p> Zygote fork 进程 → 应用进程诞生   </p>
+<p> 应用进程启动 ActivityThread   </p>
+<p> ActivityThread 与 AMS 通讯，完成 Activity 生命周期分发   </p>
+<p> Activity 创建并显示界面</p>
+<p><strong>点击图标 → Launcher 发 Intent → AMS 管理 → Zygote fork 新进程 → ActivityThread 启动 → Activity 生命周期 → 显示界面。</strong></p>
+<h4 id="frida如何实现js客户端和native层状态切换"><a href="#frida如何实现js客户端和native层状态切换" class="headerlink" title="frida如何实现js客户端和native层状态切换"></a>frida如何实现js客户端和native层状态切换</h4><p><strong>Frida 借助 Gum（Frida 的底层框架）、V8&#x2F;QuickJS 引擎、消息循环和线程桥接机制，实现 JS 与 Native 的双向状态切换。</strong></p>
+<p>Native 层执行 hook，进入 JS 逻辑时，会通过 <strong>Bridge → JS runtime → 回调执行</strong>。</p>
+<h4 id="Xposed框架原理"><a href="#Xposed框架原理" class="headerlink" title="Xposed框架原理"></a>Xposed框架原理</h4><p>Xposed 是通过修改 Zygote，使所有 app 进程加载一个自己的框架代码，从而实现系统级的 Hook 能力。</p>
+<p>Zygote 是 <strong>Android APP 进程的“母体进程”</strong>，负责预加载系统类和资源，并通过 <code>fork()</code> 快速生出所有新的应用进程，是 Android 启动机制的核心。</p>
+<h4 id="so加载流程"><a href="#so加载流程" class="headerlink" title="so加载流程"></a>so加载流程</h4><p><strong>Zygote 启动 app</strong> → 创建进程  </p>
+<p> <strong>Runtime 加载 libart.so</strong>  </p>
+<p> 调用 <strong>linker（动态链接器）</strong>  </p>
+<p>Linker 解析 so：  </p>
+<ul>
+<li>解析 ELF header  </li>
+<li>加载 segment 到内存  </li>
+<li>解析依赖库  </li>
+<li>重定位（relocation）  </li>
+<li>解析 GOT&#x2F;PLT  </li>
+<li>调用 <strong><code>.init_array</code></strong></li>
+</ul>
+<p> 最终 JNI_OnLoad → 注册 native 方法</p>
+<h4 id="so注入-防止注入-注入检测"><a href="#so注入-防止注入-注入检测" class="headerlink" title="so注入&#x2F;防止注入&#x2F;注入检测"></a>so注入&#x2F;防止注入&#x2F;注入检测</h4><p>常见 SO 注入方式：</p>
+<ol>
+<li><strong>ptrace 注入</strong> → 调用 remote process 的 dlopen  </li>
+<li><strong>LD_PRELOAD 注入</strong>（仅限可控进程）  </li>
+<li><strong>修改 &#x2F;proc&#x2F;pid&#x2F;mem</strong>  </li>
+<li><strong>zygisk &#x2F; xposed 模块注入</strong>  </li>
+<li><strong>内存 patch + 强行执行 shellcode</strong></li>
+</ol>
+<p>如何检测？</p>
+<ul>
+<li>检查 <strong>maps</strong> 是否出现可疑 so  </li>
+<li>检查 <strong>linker namespace</strong> 是否被修改  </li>
+<li>检查 Frida&#x2F;Xposed 特征（symbol、hook 函数等）  </li>
+<li>校验内存（如代码段 hash）  </li>
+<li>检查 ptrace attach 状态（TracerPid）  </li>
+<li>检测 jemalloc&#x2F;malloc hook 被替换</li>
+</ul>
+<p>如何防御？</p>
+<ul>
+<li>自校验函数、inline hook 检测  </li>
+<li>对 native 关键函数做 <strong>inline 加固</strong>  </li>
+<li>检测 GOT&#x2F;PLT 是否被修改  </li>
+<li>随机化函数位置（插入伪代码、控制流平坦化）  </li>
+<li>重要逻辑放入 SGX&#x2F;TEE（大厂在用）</li>
+</ul>
+<h4 id="ptrace注入"><a href="#ptrace注入" class="headerlink" title="ptrace注入"></a>ptrace注入</h4><p><strong>ptrace 注入（ptrace injection）</strong> 本质上是利用 ptrace 的“可修改进程内存”能力，在目标进程中 <strong>注入并执行你的代码</strong>。</p>
+<p>它是一类技术总称，不是单一动作。</p>
+<p>常规流程（简化、非可操作步骤说明）：</p>
+<ul>
+<li>让自己成为目标进程的 ptrace 调试者</li>
+<li>将一段内容写入目标进程内存</li>
+<li>修改目标寄存器，让它跳到指定位置执行</li>
+</ul>
+<p>由于 ptrace 允许修改寄存器和内存，因此理论上可以让目标执行任意代码。</p>
+<p>什么是 ptrace 注入（ptrace injection）<br>——适用于 Linux 的进程调试机制及其滥用方式的安全分析说明</p>
+<p>ptrace 是 Linux 内核提供的一个系统调用，设计原意是为了：</p>
+<p>• 调试进程（如 gdb、strace）<br>• 监控子进程执行<br>• 检查 &#x2F; 修改寄存器与内存  </p>
+<p>“ptrace 注入”（ptrace injection）通常指：</p>
+<p>攻击者（或安全研究者）利用 ptrace 监控&#x2F;控制另一个进程的能力，通过修改目标进程的内存、寄存器、指令指针等方式，使其执行<strong>非原始代码路径</strong>，包括注入动态库、替换代码、劫持函数调用等行为。</p>
+<p>换句话说：<br>它本质是“利用调试接口实现代码注入”。</p>
+<hr>
+<p>核心能力<br>使用 ptrace 的进程（父进程）可以对被跟踪的进程（子进程）做：</p>
+<p>• PTRACE_ATTACH —— 让目标进程进入 debug 状态<br>• PTRACE_PEEKDATA —— 读取目标进程内存<br>• PTRACE_POKEDATA —— 写入目标进程内存<br>• PTRACE_GETREGS &#x2F; SETREGS —— 获取&#x2F;修改寄存器<br>• PTRACE_CONT —— 让目标继续执行  </p>
+<p>通过这些原语，可以实现：</p>
+<p>• 注入一段 shellcode（PoC 中通常仅做简单打印或 whoami）<br>• 劫持函数调用<br>• 注入并触发 dlopen 加载动态库<br>• 对目标进程做系统调用重写  </p>
+<p>在现实攻击中它可能用于内存注入或持久化；在防御研究中，它是常见的行为检测场景。</p>
+<p>你可以从以下行为设计检测规则：</p>
+<ol>
+<li>可疑进程尝试 PTRACE_ATTACH 未关联的进程  </li>
+<li>ptrace 调用链后紧跟着<br>   • 写入内存（POKEDATA）<br>   • 寄存器修改<br>   • 手工构造系统调用指令  </li>
+<li>未授权程序调用 dlopen 或 mmap + mprotect 改写内存段  </li>
+<li>目标进程出现异常执行流或 PC 指针跳转异常  </li>
+<li>在 &#x2F;proc&#x2F;[pid]&#x2F;status 中出现 TracerPid ≠ 0 且 tracer 不在允许列表</li>
+</ol>
+<h4 id="frida"><a href="#frida" class="headerlink" title="frida"></a>frida</h4><p>Frida 的核心涉及三大组件：</p>
+<ol>
+<li><p><strong>Injector（注入器）</strong><br>用于将 Frida 的核心组件 frida-gadget 或 frida-agent 注入目标进程。<br>注入方式视平台不同：<br>• Linux&#x2F;macOS：ptrace + dlopen 注入<br>• Windows：CreateRemoteThread + LoadLibrary<br>• Android&#x2F;iOS：LD_PRELOAD &#x2F; 动态库注入  </p>
+</li>
+<li><p><strong>Frida Agent（驻留在目标进程中的逻辑）</strong><br>一个轻量级的运行时，负责：<br>• Hook 函数<br>• 管理 JS 执行环境<br>• 与 Frida Server &#x2F; CLI 通信  </p>
+</li>
+<li><p><strong>Frida Script（用户编写的 JavaScript 脚本）</strong><br>用于动态修改目标程序行为，如拦截 API：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Interceptor</span>.<span class="title function_">attach</span>(<span class="title class_">Module</span>.<span class="title function_">findExportByName</span>(<span class="literal">null</span>, <span class="string">&quot;open&quot;</span>), &#123;</span><br><span class="line">    <span class="attr">onEnter</span>: <span class="keyword">function</span>(<span class="params">args</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;open called:&quot;</span>, args[<span class="number">0</span>].<span class="title function_">readCString</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Frida 的本质 &#x3D; 注入 + 插桩 + RPC 框架。</p>
+</li>
+</ol>
+<p>以下过程是防御研究中最重要的部分。</p>
+<ol>
+<li><strong>注入阶段（Injection）</strong><br>   Frida 首先通过系统允许的方式进入目标进程，例如在 Linux 上：</li>
+</ol>
+<p>• ptrace 使目标进程暂停<br>• 在目标进程内分配可写可执行内存（mmap）<br>• 写入 Frida agent<br>• 设置程序计数器使其执行 dlopen 加载 agent  </p>
+<p>这与许多调试器&#x2F;EDR 的工作方式相同，因此是可检测点。</p>
+<ol>
+<li><strong>插桩阶段（Instrumentation）</strong></li>
+</ol>
+<p>Frida 使用 Gum（Frida 的底层库）实现：</p>
+<p>• Inline Hook（在指令前插入跳转）<br>• PLT&#x2F;GOT Hook<br>• 解析符号表 &#x2F; 模块导出<br>• 修改执行流，使其跳转到 Frida 的处理函数  </p>
+<p>这使得你能够：</p>
+<p>• 动态观察函数调用栈<br>• 修改函数参数&#x2F;返回值<br>• 构造 PoC 时观察漏洞利用的行为  </p>
+<ol>
+<li><strong>JavaScript Runtime</strong></li>
+</ol>
+<p>Frida 内嵌 V8 &#x2F; QuickJS（版本依赖），使用户可以：</p>
+<p>• 动态编写脚本<br>• 即时 hook&#x2F;unhook<br>• 与目标进程交互  </p>
+<p>这是它比 gdb、ptrace 更强大的地方。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://Snow233.github.io">Snow</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://snow233.github.io/2025/12/27/Android%E5%85%AB%E8%82%A1/">https://snow233.github.io/2025/12/27/Android%E5%85%AB%E8%82%A1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Snow</div><div class="author-info-description">Welcome to my blog ! ! ovo</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/snow233"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Snow233" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:870171072@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">Android四大组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#App%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%9D%83%E9%99%90"><span class="toc-number">2.</span> <span class="toc-text">App如何获取权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%93%AA%E9%87%8C%E8%AF%BB%E5%8F%96%E6%8C%87%E7%BA%B9"><span class="toc-number">3.</span> <span class="toc-text">从哪里读取指纹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%93%E5%8C%85"><span class="toc-number">4.</span> <span class="toc-text">抓包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E9%80%9A%E4%BF%A1%E6%8C%87%E7%BA%B9"><span class="toc-number">5.</span> <span class="toc-text">证书通信指纹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#band%E9%80%9A%E4%BF%A1"><span class="toc-number">6.</span> <span class="toc-text">band通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#App%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B"><span class="toc-number">7.</span> <span class="toc-text">App启动流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#frida%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0js%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8Cnative%E5%B1%82%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2"><span class="toc-number">8.</span> <span class="toc-text">frida如何实现js客户端和native层状态切换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Xposed%E6%A1%86%E6%9E%B6%E5%8E%9F%E7%90%86"><span class="toc-number">9.</span> <span class="toc-text">Xposed框架原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#so%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B"><span class="toc-number">10.</span> <span class="toc-text">so加载流程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#so%E6%B3%A8%E5%85%A5-%E9%98%B2%E6%AD%A2%E6%B3%A8%E5%85%A5-%E6%B3%A8%E5%85%A5%E6%A3%80%E6%B5%8B"><span class="toc-number">11.</span> <span class="toc-text">so注入&#x2F;防止注入&#x2F;注入检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ptrace%E6%B3%A8%E5%85%A5"><span class="toc-number">12.</span> <span class="toc-text">ptrace注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#frida"><span class="toc-number">13.</span> <span class="toc-text">frida</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/27/tour-of-go/" title="tour-of-go">tour-of-go</a><time datetime="2025-12-27T11:48:20.000Z" title="Created 2025-12-27 19:48:20">2025-12-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/27/%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%A6%E4%B9%A0/" title="持久化学习">持久化学习</a><time datetime="2025-12-27T11:47:44.000Z" title="Created 2025-12-27 19:47:44">2025-12-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/27/Android%E5%85%AB%E8%82%A1/" title="Android八股">Android八股</a><time datetime="2025-12-27T11:47:00.000Z" title="Created 2025-12-27 19:47:00">2025-12-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/27/MSF-Learning/" title="MSF Learning">MSF Learning</a><time datetime="2025-10-26T23:58:27.000Z" title="Created 2025-10-27 07:58:27">2025-10-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/14/%E7%BE%8A%E5%9F%8E%E6%9D%AF%E5%A4%8D%E7%8E%B0/" title="羊城杯复现">羊城杯复现</a><time datetime="2025-10-14T04:19:13.000Z" title="Created 2025-10-14 12:19:13">2025-10-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/index_image.png);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2026 By Snow</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
